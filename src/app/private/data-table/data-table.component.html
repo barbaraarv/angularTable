@@ -1,0 +1,41 @@
+<div class="userFoundtable" *ngIf="indexOfUser != -1; else loggedOut">
+  <mat-form-field>
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input />
+  </mat-form-field>
+  <div class="mat-elevation-z8">
+    <mat-table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+      <ng-container matColumnDef="id">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let pelicula">{{ pelicula.id }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef >Nombre</mat-header-cell>
+        <mat-cell mat-cell mat-header-cell *matCellDef="let pelicula">{{ pelicula.nombre }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="director">
+        <mat-header-cell mat-header-cell *matHeaderCellDef >Director</mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let pelicula">{{ pelicula.director }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="clasificacion">
+        <mat-header-cell mat-header-cell *matHeaderCellDef >Clasificacion</mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let pelicula">
+          {{ pelicula.clasificacion }}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+</div>
+
+<ng-template #loggedOut>
+  <p>No hemos encontrado ningun usuario que coincida, por favor vuelve a interntar
+  :c</p>
+</ng-template>

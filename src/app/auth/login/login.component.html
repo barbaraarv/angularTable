@@ -1,0 +1,8 @@
+<form class="form" [formGroup]="loginForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Ingrese su usuario</mat-label>
+    <input matInput class="user_input" formControlName="user" name="user" required />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="guardarUsuario()" routerLink="dashboard">Acceder</button>
+</form>
